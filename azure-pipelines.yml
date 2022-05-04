@@ -21,20 +21,18 @@ steps:
     cfVersion: '6.43.0'
 
 
-#- task: CloudFoundry@1
-#  inputs:
-#    cfEndpoint: 'TAS Foundation 001 - Azure'
-#    org: 'Enterprise-NonProd'
-#    space: 'SANDBOX'
-#    deploymentOptions: 'manifest'
-#    cfManifest: 'TBS-Demo-Framework-API/manifest.yaml'
-#    createServices: false
-#    bindServices: false
-#    workingDirectory: 'TBS-Demo-Framework-API'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'TBS-Demo-Framework-API'
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
-#- task: CloudFoundryCLIInstall@0
-#  inputs:
-#    cfVersion: '7.4.0'
 
 - task: CloudFoundry@1
   inputs:
@@ -50,14 +48,3 @@ steps:
     bindServices: false
     workingDirectory: 'TBS-Demo-Framework-API'
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(agent.builddirectory)/TBS-Demo-Framework-API'
-    Contents: '**'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-    
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
