@@ -42,9 +42,8 @@ steps:
     org: 'Enterprise-NonProd'
     space: 'SANDBOX'
     deploymentOptions: 'manual'
-    name: 'testapp'
+    name: 'framework-api-sandbox'
     instances: '3'
-#    domain: 'framework-api-sandbox'
     useRoute: true
     buildPackOptions: 'builtin'
     createServices: false
