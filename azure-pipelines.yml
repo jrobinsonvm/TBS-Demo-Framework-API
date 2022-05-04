@@ -49,3 +49,15 @@ steps:
     createServices: false
     bindServices: false
     workingDirectory: 'TBS-Demo-Framework-API'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(agent.builddirectory)/TBS-Demo-Framework-API'
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
