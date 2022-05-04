@@ -44,6 +44,7 @@ steps:
     deploymentOptions: 'manual'
     name: 'testapp'
     instances: '3'
+    domain: 'framework-api-sandbox'
     useRoute: false
     buildPackOptions: 'builtin'
     createServices: false
