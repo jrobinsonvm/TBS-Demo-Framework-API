@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool: Default
+
+
+steps:
+- script: |
+    echo Begin Push to Tanzu Application Service.
+  displayName: 'Begin Deployment'
+  
+- task: CloudFoundry@1
+  inputs:
+    cfEndpoint: 'TAS Foundation 001 - Azure'
+    org: 'Enterprise-NonProd'
+    space: 'DEV'
+    deploymentOptions: 'manifest'
+    cfManifest: 'TBS-Demo-Framework-API/manifest.yaml'
+    createServices: false
+    bindServices: false
