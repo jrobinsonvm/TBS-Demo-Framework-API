@@ -11,7 +11,9 @@ pool: Default
 
 steps:
 - script: |
+    ls -lah 
     echo Begin Push to Tanzu Application Service.
+    pwd
   displayName: 'Begin Deployment'
   
 - task: CloudFoundryCLIInstall@0
@@ -26,3 +28,4 @@ steps:
     cfManifest: 'TBS-Demo-Framework-API/manifest.yaml'
     createServices: false
     bindServices: false
+    workingDirectory: 'TBS-Demo-Framework-API'
