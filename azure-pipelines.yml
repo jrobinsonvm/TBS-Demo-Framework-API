@@ -43,7 +43,7 @@ steps:
     space: 'SANDBOX'
     deploymentOptions: 'manual'
     name: 'framework-api-sandbox'
-    instances: '3'
+    instances: '1'
     useRoute: true
     buildPackOptions: 'builtin'
     createServices: false
