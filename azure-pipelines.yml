@@ -16,16 +16,36 @@ steps:
     pwd
   displayName: 'Begin Deployment'
   
+#- task: CloudFoundryCLIInstall@0
+#  inputs:
+#    cfVersion: '6.43.0'
+
+
+#- task: CloudFoundry@1
+#  inputs:
+#    cfEndpoint: 'TAS Foundation 001 - Azure'
+#    org: 'Enterprise-NonProd'
+#    space: 'SANDBOX'
+#    deploymentOptions: 'manifest'
+#    cfManifest: 'TBS-Demo-Framework-API/manifest.yaml'
+#    createServices: false
+#    bindServices: false
+#    workingDirectory: 'TBS-Demo-Framework-API'
+
 - task: CloudFoundryCLIInstall@0
   inputs:
-    cfVersion: '6.43.0'
+    cfVersion: '7.4.0'
+
 - task: CloudFoundry@1
   inputs:
     cfEndpoint: 'TAS Foundation 001 - Azure'
     org: 'Enterprise-NonProd'
     space: 'SANDBOX'
-    deploymentOptions: 'manifest'
-    cfManifest: 'TBS-Demo-Framework-API/manifest.yaml'
+    deploymentOptions: 'manual'
+    name: 'testapp'
+    instances: '3'
+    useRoute: false
+    buildPackOptions: 'builtin'
     createServices: false
     bindServices: false
     workingDirectory: 'TBS-Demo-Framework-API'
