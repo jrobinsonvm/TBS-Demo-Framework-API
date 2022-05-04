@@ -14,6 +14,9 @@ steps:
     echo Begin Push to Tanzu Application Service.
   displayName: 'Begin Deployment'
   
+- task: CloudFoundryCLIInstall@0
+  inputs:
+    cfVersion: '6.43.0'
 - task: CloudFoundry@1
   inputs:
     cfEndpoint: 'TAS Foundation 001 - Azure'
