@@ -23,7 +23,7 @@ steps:
   inputs:
     cfEndpoint: 'TAS Foundation 001 - Azure'
     org: 'Enterprise-NonProd'
-    space: 'DEV'
+    space: 'SANDBOX'
     deploymentOptions: 'manifest'
     cfManifest: 'TBS-Demo-Framework-API/manifest.yaml'
     createServices: false
