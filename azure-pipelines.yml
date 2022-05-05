@@ -1,0 +1,50 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool: Default
+
+
+steps:
+- script: |
+    ls -lah 
+    echo Begin Push to Tanzu Application Service.
+    pwd
+  displayName: 'Begin Deployment'
+  
+- task: CloudFoundryCLIInstall@0
+  inputs:
+    cfVersion: '6.43.0'
+
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'TBS-Demo-Framework-API'
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+
+- task: CloudFoundry@1
+  inputs:
+    cfEndpoint: 'TAS Foundation 001 - Azure'
+    org: 'Enterprise-NonProd'
+    space: 'SANDBOX'
+    deploymentOptions: 'manual'
+    name: 'framework-api-sandbox'
+    instances: '1'
+    useRoute: true
+    buildPackOptions: 'builtin'
+    createServices: false
+    bindServices: false
+    workingDirectory: 'TBS-Demo-Framework-API'
+

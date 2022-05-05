@@ -2,5 +2,4 @@ version: 1
 applications:
 - buildpacks:
   - hwc_buildpack
-  name: tanzu-api-demo
   stack: windows
